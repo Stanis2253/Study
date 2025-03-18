@@ -252,6 +252,8 @@ namespace StudyProject
 
             Func<int, int, int> add = (a, b) => a + b;
 
+            add += (a, b) => a * b;
+
             Action<int> action = delegate(int a)
             {
                 Console.WriteLine(a);
@@ -392,11 +394,9 @@ namespace StudyProject
 
                 var button = new Button();
 
-                // Подписка на событие
                 button.Click += (sender, args) => Console.WriteLine("Кнопка нажата!");
                 button.MessageReceived += (sender, message) => Console.WriteLine($"Получено сообщение: {message}");
 
-                // Вызов событий
                 button.SimulateClick();
                 button.SimulateMessage("Привет!");
             }
@@ -446,6 +446,17 @@ namespace StudyProject
                 Console.WriteLine($"Пустая строка: {String.Empty}");
                 Console.WriteLine($"Null строка: {(string)null}");
             }
+
+            public static bool patronymic( string str)
+            {
+                var strDesc = str.Trim();
+                for (int i = str.Length - 1; i < 0; i++)
+                {
+                    strDesc += str[i];
+                }
+
+                return str == strDesc ? true : false;
+            }
         }
 
         // Демонстрация операций со строками
@@ -457,14 +468,12 @@ namespace StudyProject
 
                 string text = "Hello, World!";
 
-                // Основные операции
                 Console.WriteLine($"Верхний регистр: {text.ToUpper()}");
                 Console.WriteLine($"Нижний регистр: {text.ToLower()}");
                 Console.WriteLine($"Подстрока: {text.Substring(0, 5)}");
                 Console.WriteLine($"Замена: {text.Replace("World", "C#")}");
                 Console.WriteLine($"Разделение: {string.Join(", ", text.Split(','))}");
 
-                // Поиск
                 Console.WriteLine($"Содержит 'World': {text.Contains("World")}");
                 Console.WriteLine($"Индекс 'World': {text.IndexOf("World")}");
                 Console.WriteLine($"Начинается с 'Hello': {text.StartsWith("Hello")}");
